@@ -25,14 +25,14 @@ class MicropostsController extends Controller
         //dashboardビューでそれらを表示
         return view('dashboard',$data);
     }
-    public function store(Request $recuest)
+    public function store(Request $request)
     {
         //バリデーション
         $request->validate([
            'content'=>'required|max:255',
             ]);
          // 認証済みユーザー（閲覧者）の投稿として作成（リクエストされた値をもとに作成）
-         $request->user()->microposts()->create9([
+         $request->user()->microposts()->create([
              'content'=>$request->content,
              ]);
         //前のURLへリダイレクトされる
